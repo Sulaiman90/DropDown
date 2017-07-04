@@ -1,0 +1,18 @@
+ body{
+ 	margin:0 !important;
+ 	overflow: hidden;
+ }
+  #bgCanvas {
+	position: absolute;
+	background-color: transparent!important;
+}
+ #bgCanvasMenu {
+	position: absolute;
+	background-color: transparent!important;
+}
+#canvas 
+{
+	z-index:1000;
+	position: absolute;
+	background-color: transparent!important;
+}
