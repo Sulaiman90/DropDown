@@ -30,12 +30,16 @@ createjs.MovieClip.prototype.DropDown = function(options)
       indexSelectionAlpha:1,
       indexDirection:"down",
       defaultIndex:"Select",
-      textAlignValue:"left",
-      size:"large",
       showScroll:false,
       thumbFillColor:"#FBDACA",
       scrollBarFillColor:"#A9A9A9",
+      textAlignValue:"left",
+      size:"large",
 	  onIndexSelected:function(data)
+	  {
+
+	  },
+	  onIndexChanged:function(data)
 	  {
 
 	  },
@@ -86,8 +90,7 @@ createjs.MovieClip.prototype.DropDown = function(options)
 
 	var flag = true;
 	var myClickMcVal;
-	var cid;
-	var previd;
+	
 	var arrowOver = false;
 	var dropDownIndex = 1;
 
@@ -97,8 +100,9 @@ createjs.MovieClip.prototype.DropDown = function(options)
 	var currentIndexWidth = 0;
 	var currentDropDownWidth = 0;
 
-	var dropDownHeight = 31;
-	var itemHeight = 22.2;
+	var dropDownHeight = 25;
+	var itemHeight = 18.2;
+
 	var cornerRadius = 2;
 	var minAlphaValue = 0.01;
 
@@ -109,8 +113,11 @@ createjs.MovieClip.prototype.DropDown = function(options)
 	var thumbHeight = 20;
 	var thumbWidth = 20;
 	var totalIndexHeight = 0;
+
 	var thumbFillColor = _parent.opts.thumbFillColor;
 	var scrollBarFillColor = _parent.opts.scrollBarFillColor;
+
+	var currentIndexNo = 0;
 
 	var rect = new createjs.Shape();
 	var bg  = new createjs.MovieClip(null);
@@ -152,31 +159,14 @@ createjs.MovieClip.prototype.DropDown = function(options)
 
 	function init(){
 
-		var space;
-
-		if(cpSize=="large"){
-			dropDownHeight = 31;
-			itemHeight = 22.2;
-			space = 11;
-			if (isListComingTo == "up"){
-				arrow.scaleY = -1;
-			}
-			else{
-				arrow.scaleY = 1;	
-			}
+		var space = 9;
+		select_mc._txt.y = select_mc._txt.y - 2;	
+		arrow.y = 12;
+		if (isListComingTo == "up"){
+			arrow.scaleY = -0.8;
 		}
-		else if(cpSize=="medium"){
-			dropDownHeight = 25;
-			itemHeight = 18.2;
-			space = 9;
-			select_mc._txt.y = select_mc._txt.y - 2;	
-			arrow.y = 12;
-			if (isListComingTo == "up"){
-				arrow.scaleY = -0.8;
-			}
-			else{
-				arrow.scaleY = 0.8;
-			}
+		else{
+			arrow.scaleY = 0.8;
 		}
 
 		select_mc._txt.textAlign = _parent.opts.textAlignValue;
@@ -322,8 +312,8 @@ createjs.MovieClip.prototype.DropDown = function(options)
 			scrollHeight = rectBgHeight;
 		}
 
-		//console.log("itemHeight "+itemHeight +" rectBgHeight "+rectBgHeight + " scrollHeight "+scrollHeight);
-		//console.log("totalIndexHeight "+totalIndexHeight);
+		console.log("itemHeight "+itemHeight +" rectBgHeight "+rectBgHeight + " scrollHeight "+scrollHeight);
+		console.log("totalIndexHeight "+totalIndexHeight);
 
 		// total indexes outline
 		rect.graphics.setStrokeStyle(1).beginStroke("#000000");
@@ -383,12 +373,12 @@ createjs.MovieClip.prototype.DropDown = function(options)
 			}
 			else{
 				scrollStartY = rectBgY;
-				items.y = items.y +scrollHeight - 3.5;
+				items.y = items.y + (totalIndexHeight - scrollHeight);
 				scrollHeight = scrollHeight - 1; 
 			}
 
-			//console.log("scrollHeight,scrollStartY "+scrollHeight,scrollStartY);
-			//console.log("items Y "+items.y);		
+			console.log("scrollHeight,scrollStartY "+scrollHeight,scrollStartY);
+			console.log("items Y "+items.y);		
 
 			// extrashape to hide small gap
 			var extraShape = new createjs.Shape();
@@ -539,18 +529,19 @@ createjs.MovieClip.prototype.DropDown = function(options)
 
 	function hdlrItemClick(evt){
 		//console.log("hdlrItemClick "+dropDownIndex);
-		previd = cid;
 		var clickMc = (evt.currentTarget);
-		cid = clickMc;
 		myClickMcVal = clickMc.name.split("item")[1];
 		select_mc._txt.text = itemArray[myClickMcVal];
 		selectText = select_mc._txt.text;
 		itemVisibility(false);
 		itemSelectTrue = true;
-		// index no
 		dropDownIndex = clickMc.id;
 		//console.log("dropDownIndex "+dropDownIndex);
 		_parent.opts.onIndexSelected(dropDownIndex);
+		if(dropDownIndex != currentIndexNo){
+			_parent.opts.onIndexChanged(dropDownIndex);
+		}
+		currentIndexNo = dropDownIndex;
 		if(dropDownIndex == ansIndexNo){
 			_parent.opts.onCorrectAnsSelected();
 		}
