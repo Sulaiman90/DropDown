@@ -21,7 +21,7 @@ function createDropDown(){
 
 	console.log("createDropDown:dropDownIndexes "+dropDownIndexes);
 
-	stageMain.combo.DropDown({
+	stageMain.combo1.DropDown({
 		indexes:dropDownIndexes,
 		answer:1,
 		indexHoverColor:"#66CCFF",

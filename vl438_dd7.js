@@ -30,7 +30,7 @@ function getMCSymbolPrototype(symbol, nominalBounds, frameBounds) {
 
 	// Layer 2
 	this.shape = new cjs.Shape();
-	this.shape.graphics.lf(["#FF9900","#FFCC00"],[0,1],-0.4,2.9,2,-3.5).s().p("AhcAvIBchdIBdBdg");
+	this.shape.graphics.f("#FFB200").s().p("AhcAvIBchdIBdBdg");
 
 	this.timeline.addTween(cjs.Tween.get(this.shape).wait(1));
 
@@ -43,16 +43,36 @@ p.frameBounds = [rect];
 	this.initialize(mode,startPosition,loop,{});
 
 	// Layer 2
-	this._txt = new cjs.Text("?", "16px 'Arial'");
+	this._txt = new cjs.Text("select", "16px 'Arial'");
 	this._txt.name = "_txt";
 	this._txt.lineHeight = 20;
 	this._txt.lineWidth = 49;
 	this._txt.parent = this;
-	this._txt.setTransform(5.4,6.5);
+	this._txt.setTransform(5.4,3.6);
 
 	this.timeline.addTween(cjs.Tween.get(this._txt).wait(1));
 
-}).prototype = getMCSymbolPrototype(lib.Symbol6, rect = new cjs.Rectangle(3.4,4.5,53.1,21.9), [rect]);
+}).prototype = getMCSymbolPrototype(lib.Symbol6, rect = new cjs.Rectangle(3.4,1.6,53.1,21.9), [rect]);
+
+
+(lib.___Camera___ = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// timeline functions:
+	this.frame_0 = function() {
+		this.visible = false;
+	}
+
+	// actions tween:
+	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(2));
+
+	// viewfinder
+	this.shape = new cjs.Shape();
+	this.shape.graphics.f().s("rgba(0,0,0,0)").ss(2,1,1,3,true).p("EAq+AfQMhV7AAAMAAAg+fMBV7AAAg");
+
+	this.timeline.addTween(cjs.Tween.get(this.shape).wait(2));
+
+}).prototype = p = new cjs.MovieClip();
 
 
 (lib.up_arrow = function(mode,startPosition,loop) {
@@ -101,12 +121,12 @@ p.frameBounds = [rect, rect, rect, rect];
 	// arrow
 	this.arrow = new lib.up_arrow();
 	this.arrow.parent = this;
-	this.arrow.setTransform(80.4,15.5,1,1,0,180,0,0.1,0.1);
+	this.arrow.setTransform(80.4,12.4,1,0.8,0,180,0,0.1,0.1);
 	new cjs.ButtonHelper(this.arrow, 0, 1, 2, false, new lib.up_arrow(), 3);
 
 	this.timeline.addTween(cjs.Tween.get(this.arrow).wait(1));
 
-}).prototype = getMCSymbolPrototype(lib.dropdown1_mccopy, rect = new cjs.Rectangle(0,0,98,31.3), [rect]);
+}).prototype = getMCSymbolPrototype(lib.dropdown1_mccopy, rect = new cjs.Rectangle(0,0,98,25), [rect]);
 
 
 // stage content:
@@ -132,12 +152,19 @@ p.frameBounds = [rect, rect, rect, rect];
 	// actions tween:
 	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(1));
 
-	// Layer 1
-	this.combo = new lib.dropdown1_mccopy();
-	this.combo.parent = this;
-	this.combo.setTransform(335.8,249.9,1,1,0,0,0,0.1,0.1);
+	// Camera
+	this.___camera___instance = new lib.___Camera___();
+	this.___camera___instance.parent = this;
+	this.___camera___instance.setTransform(400,269);
 
-	this.timeline.addTween(cjs.Tween.get(this.combo).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this.___camera___instance).wait(1));
+
+	// Layer 1
+	this.combo1 = new lib.dropdown1_mccopy();
+	this.combo1.parent = this;
+	this.combo1.setTransform(110.9,423.2,1,1,0,0,0,0.1,0.1);
+
+	this.timeline.addTween(cjs.Tween.get(this.combo1).wait(1));
 
 	// script
 	this.shape = new cjs.Shape();
@@ -147,7 +174,7 @@ p.frameBounds = [rect, rect, rect, rect];
 	this.timeline.addTween(cjs.Tween.get(this.shape).wait(1));
 
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = rect = new cjs.Rectangle(400,269,800,538);
+p.nominalBounds = rect = new cjs.Rectangle(399,268,802,540);
 p.frameBounds = [rect];
 // library properties:
 lib.properties = {

@@ -160,8 +160,7 @@ createjs.MovieClip.prototype.DropDown = function(options)
 	function init(){
 
 		var space = 9;
-		select_mc._txt.y = select_mc._txt.y - 2;	
-		arrow.y = 12;
+		//select_mc._txt.y = select_mc._txt.y + 2;	
 		if (isListComingTo == "up"){
 			arrow.scaleY = -0.8;
 		}
