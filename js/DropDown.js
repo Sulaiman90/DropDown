@@ -383,7 +383,7 @@ createjs.MovieClip.prototype.DropDown = function(options)
 			var extraShape = new createjs.Shape();
 			extraShape.graphics.setStrokeStyle(1).beginStroke("black").beginFill("black");
 			extraShape.graphics.drawRect(scrollStartX, scrollStartY-10, 20, 10);
-			//scrollContainer.addChild(extraShape);
+			scrollContainer.addChild(extraShape);
 
 			var scrollBg = new createjs.Shape();
 			scrollBg.graphics.setStrokeStyle(1).beginStroke("black").beginFill(scrollBarFillColor);

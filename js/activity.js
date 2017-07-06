@@ -26,7 +26,7 @@ function createDropDown(){
 		answer:1,
 		indexHoverColor:"#66CCFF",
       	indexHoverAlpha:0.7,
-      	indexDirection:"up",
+      	indexDirection:"down",
 		defaultIndex:"Select",
 		size:"large",
 		showScroll:true,
