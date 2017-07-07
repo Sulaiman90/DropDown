@@ -160,7 +160,10 @@ createjs.MovieClip.prototype.DropDown = function(options)
 	function init(){
 
 		var space = 9;
-		//select_mc._txt.y = select_mc._txt.y + 2;	
+		if (navigator.userAgent.indexOf("Firefox") > 0) {
+			select_mc._txt.y = select_mc._txt.y + 2;	
+		}
+		
 		if (isListComingTo == "up"){
 			arrow.scaleY = -0.8;
 		}
@@ -311,8 +314,8 @@ createjs.MovieClip.prototype.DropDown = function(options)
 			scrollHeight = rectBgHeight;
 		}
 
-		console.log("itemHeight "+itemHeight +" rectBgHeight "+rectBgHeight + " scrollHeight "+scrollHeight);
-		console.log("totalIndexHeight "+totalIndexHeight);
+		/*console.log("itemHeight "+itemHeight +" rectBgHeight "+rectBgHeight + " scrollHeight "+scrollHeight);
+		console.log("totalIndexHeight "+totalIndexHeight);*/
 
 		// total indexes outline
 		rect.graphics.setStrokeStyle(1).beginStroke("#000000");
@@ -332,7 +335,7 @@ createjs.MovieClip.prototype.DropDown = function(options)
 		outline.graphics.beginFill("white");
 		outline.graphics.drawRoundRect(0,0,currentDropDownWidth,dropDownHeight,5);
 
-		console.log("dropDownHeight,rectBgY "+dropDownHeight,rectBgY);
+		//console.log("dropDownHeight,rectBgY "+dropDownHeight,rectBgY);
 
 		// code added for solving breaking lines issue.
 		var dummy = new createjs.Shape();
@@ -376,14 +379,16 @@ createjs.MovieClip.prototype.DropDown = function(options)
 				scrollHeight = scrollHeight - 1; 
 			}
 
-			console.log("scrollHeight,scrollStartY "+scrollHeight,scrollStartY);
-			console.log("items Y "+items.y);		
+			/*console.log("scrollHeight,scrollStartY "+scrollHeight,scrollStartY);
+			console.log("items Y "+items.y);		*/
 
 			// extrashape to hide small gap
 			var extraShape = new createjs.Shape();
 			extraShape.graphics.setStrokeStyle(1).beginStroke("black").beginFill("black");
 			extraShape.graphics.drawRect(scrollStartX, scrollStartY-10, 20, 10);
-			scrollContainer.addChild(extraShape);
+			if (isListComingTo == "down"){
+				scrollContainer.addChild(extraShape);
+			}
 
 			var scrollBg = new createjs.Shape();
 			scrollBg.graphics.setStrokeStyle(1).beginStroke("black").beginFill(scrollBarFillColor);
