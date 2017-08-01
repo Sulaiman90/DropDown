@@ -162,7 +162,7 @@ p.frameBounds = [rect, rect, rect, rect];
 	// Layer 1
 	this.combo1 = new lib.dropdown1_mccopy();
 	this.combo1.parent = this;
-	this.combo1.setTransform(110.9,423.2,1,1,0,0,0,0.1,0.1);
+	this.combo1.setTransform(316.9,182.2,1,1,0,0,0,0.1,0.1);
 
 	this.timeline.addTween(cjs.Tween.get(this.combo1).wait(1));
 

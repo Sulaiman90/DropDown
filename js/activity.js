@@ -29,14 +29,14 @@ function createDropDown(){
       	indexDirection:"down",
 		defaultIndex:"Select",
 		size:"large",
-		showScroll:true,
+		showScroll:false,
 		onIndexSelected:function(data)
 		{		
-			console.log("onIndexSelected "+data);
+			//console.log("onIndexSelected "+data);
 		},
 		onIndexChanged:function(indexNo)
 		{
-			console.log("onIndexChanged "+indexNo);
+			//console.log("onIndexChanged "+indexNo);
 		},
 		onDropDownClicked:function()
 		{
