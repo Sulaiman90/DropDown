@@ -25,6 +25,18 @@ function getMCSymbolPrototype(symbol, nominalBounds, frameBounds) {
 	}
 
 
+(lib.Symbol1 = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// Layer 1
+	this.shape = new cjs.Shape();
+	this.shape.graphics.f("#660066").s().p("ApfD6IAAnzIS/AAIAAHzg");
+
+	this.timeline.addTween(cjs.Tween.get(this.shape).wait(1));
+
+}).prototype = getMCSymbolPrototype(lib.Symbol1, rect = new cjs.Rectangle(-60.7,-25,121.5,50), [rect]);
+
+
 (lib.yellowarrow_up = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
@@ -126,7 +138,15 @@ p.frameBounds = [rect, rect, rect, rect];
 
 	this.timeline.addTween(cjs.Tween.get(this.arrow).wait(1));
 
-}).prototype = getMCSymbolPrototype(lib.dropdown1_mccopy, rect = new cjs.Rectangle(0,0,98,25), [rect]);
+	// custom hit
+	this.customHitMc = new lib.Symbol1();
+	this.customHitMc.parent = this;
+	this.customHitMc.setTransform(50.4,12.9,1.289,0.996);
+	this.customHitMc.alpha = 0.41;
+
+	this.timeline.addTween(cjs.Tween.get(this.customHitMc).wait(1));
+
+}).prototype = getMCSymbolPrototype(lib.dropdown1_mccopy, rect = new cjs.Rectangle(-27.9,-12,156.6,49.8), [rect]);
 
 
 // stage content:

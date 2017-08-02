@@ -15,6 +15,11 @@
                "id":"hmUtils",
                "src":"hmUtils.js",
                "ver":"1.0"
+            },
+            {  
+               "id":"DropDown",
+               "src":"DropDown.js",
+               "ver":"1.0"
             }
          ],
          "js":[  
@@ -26,10 +31,6 @@
                "id":"",
                "src":"vl438_dd7.js"
             },
-            {  
-               "id":"",
-               "src":"js/DropDown.js"
-            },  
             {  
                "id":"",
                "src":"js/activity.js"
