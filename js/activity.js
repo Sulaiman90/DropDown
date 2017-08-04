@@ -11,13 +11,17 @@ function createDropDown(){
 	/*var dropDownIndexes = ["Elephant","Bungalow","India Map","Shelf","Four",
 						   "Castle","Cup","Cup and saucer","Van","Car"
 						   ];	
+
+	
 */
-	var dropDownIndexes=["Home","Market","Police Station","Fire Station",
+	/*var dropDownIndexes=["Home","Market","Police Station","Fire Station",
 					"Pharmacy","City Hospital","Car Park","Cinema",
 					"Children Park","Creche","College","Secondary School",
-					"Super Market","Water Pumping","Primary School","Transformer"];					   
+					"Super Market","Water Pumping","Primary School","Transformer"];			*/		 
+
+var dropDownIndexes = ["sin","cos","tan"]; 
 						 			   					   
-	dropDownIndexes.sort(Array.CASEINSENSITIVE);
+	//dropDownIndexes.sort(Array.CASEINSENSITIVE);
 
 	console.log("createDropDown:dropDownIndexes "+dropDownIndexes);
 
@@ -27,10 +31,9 @@ function createDropDown(){
 		indexHoverColor:"#66CCFF",
       	indexHoverAlpha:0.7,
       	indexDirection:"down",
-		defaultIndex:"Select",
-		size:"large",
+		defaultIndex:"?",
 		showScroll:false,
-		customHitBool:false,
+		customHitBool:true,
 		customHitShape:stageMain.combo1.customHitMc,
 		onIndexSelected:function(data)
 		{		

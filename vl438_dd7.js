@@ -25,18 +25,6 @@ function getMCSymbolPrototype(symbol, nominalBounds, frameBounds) {
 	}
 
 
-(lib.Symbol1 = function(mode,startPosition,loop) {
-	this.initialize(mode,startPosition,loop,{});
-
-	// Layer 1
-	this.shape = new cjs.Shape();
-	this.shape.graphics.f("#660066").s().p("ApfD6IAAnzIS/AAIAAHzg");
-
-	this.timeline.addTween(cjs.Tween.get(this.shape).wait(1));
-
-}).prototype = getMCSymbolPrototype(lib.Symbol1, rect = new cjs.Rectangle(-60.7,-25,121.5,50), [rect]);
-
-
 (lib.yellowarrow_up = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
@@ -67,24 +55,16 @@ p.frameBounds = [rect];
 }).prototype = getMCSymbolPrototype(lib.Symbol6, rect = new cjs.Rectangle(3.4,1.6,53.1,21.9), [rect]);
 
 
-(lib.___Camera___ = function(mode,startPosition,loop) {
+(lib.customHit = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
-	// timeline functions:
-	this.frame_0 = function() {
-		this.visible = false;
-	}
-
-	// actions tween:
-	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(2));
-
-	// viewfinder
+	// Layer 1
 	this.shape = new cjs.Shape();
-	this.shape.graphics.f().s("rgba(0,0,0,0)").ss(2,1,1,3,true).p("EAq+AfQMhV7AAAMAAAg+fMBV7AAAg");
+	this.shape.graphics.f("#660066").s().p("ApfD6IAAnzIS/AAIAAHzg");
 
-	this.timeline.addTween(cjs.Tween.get(this.shape).wait(2));
+	this.timeline.addTween(cjs.Tween.get(this.shape).wait(1));
 
-}).prototype = p = new cjs.MovieClip();
+}).prototype = getMCSymbolPrototype(lib.customHit, rect = new cjs.Rectangle(-60.7,-25,121.5,50), [rect]);
 
 
 (lib.up_arrow = function(mode,startPosition,loop) {
@@ -120,7 +100,7 @@ p.nominalBounds = rect = new cjs.Rectangle(-17.3,-15,34.6,30.1);
 p.frameBounds = [rect, rect, rect, rect];
 
 
-(lib.dropdown1_mccopy = function(mode,startPosition,loop) {
+(lib.dropdown1_mc = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
 	// select
@@ -139,14 +119,14 @@ p.frameBounds = [rect, rect, rect, rect];
 	this.timeline.addTween(cjs.Tween.get(this.arrow).wait(1));
 
 	// custom hit
-	this.customHitMc = new lib.Symbol1();
+	this.customHitMc = new lib.customHit();
 	this.customHitMc.parent = this;
 	this.customHitMc.setTransform(50.4,12.9,1.289,0.996);
 	this.customHitMc.alpha = 0.41;
 
 	this.timeline.addTween(cjs.Tween.get(this.customHitMc).wait(1));
 
-}).prototype = getMCSymbolPrototype(lib.dropdown1_mccopy, rect = new cjs.Rectangle(-27.9,-12,156.6,49.8), [rect]);
+}).prototype = getMCSymbolPrototype(lib.dropdown1_mc, rect = new cjs.Rectangle(-27.9,-12,156.6,49.8), [rect]);
 
 
 // stage content:
@@ -172,15 +152,8 @@ p.frameBounds = [rect, rect, rect, rect];
 	// actions tween:
 	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(1));
 
-	// Camera
-	this.___camera___instance = new lib.___Camera___();
-	this.___camera___instance.parent = this;
-	this.___camera___instance.setTransform(400,269);
-
-	this.timeline.addTween(cjs.Tween.get(this.___camera___instance).wait(1));
-
 	// Layer 1
-	this.combo1 = new lib.dropdown1_mccopy();
+	this.combo1 = new lib.dropdown1_mc();
 	this.combo1.parent = this;
 	this.combo1.setTransform(316.9,182.2,1,1,0,0,0,0.1,0.1);
 
@@ -194,7 +167,7 @@ p.frameBounds = [rect, rect, rect, rect];
 	this.timeline.addTween(cjs.Tween.get(this.shape).wait(1));
 
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = rect = new cjs.Rectangle(399,268,802,540);
+p.nominalBounds = rect = new cjs.Rectangle(400,269,800,538);
 p.frameBounds = [rect];
 // library properties:
 lib.properties = {
