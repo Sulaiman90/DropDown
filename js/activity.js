@@ -14,27 +14,30 @@ function createDropDown(){
 
 	
 */
-	/*var dropDownIndexes=["Home","Market","Police Station","Fire Station",
+	/*var dropDownIndexes=["Home","Home","Police Station","Fire Station",
 					"Pharmacy","City Hospital","Car Park","Cinema",
 					"Children Park","Creche","College","Secondary School",
 					"Super Market","Water Pumping","Primary School","Transformer"];			*/		 
 
-var dropDownIndexes = ["sin","cos","tan"]; 
+var dropDownIndexes = ["Home","Police","Transformer"]; 
+
+var cnt = 0;
 						 			   					   
 	//dropDownIndexes.sort(Array.CASEINSENSITIVE);
 
 	console.log("createDropDown:dropDownIndexes "+dropDownIndexes);
 
-	stageMain.combo1.DropDown({
+	stageMain.combo.DropDown({
 		indexes:dropDownIndexes,
 		answer:1,
 		indexHoverColor:"#66CCFF",
       	indexHoverAlpha:0.7,
       	indexDirection:"down",
-		defaultIndex:"?",
+		defaultIndex:"Select",
 		showScroll:false,
 		customHitBool:true,
-		customHitShape:stageMain.combo1.customHitMc,
+		customHitShape:stageMain.combo.customHitMc,
+		showAnsBtn:stageMain.show_btn,
 		onIndexSelected:function(data)
 		{		
 			//console.log("onIndexSelected "+data);
@@ -46,6 +49,7 @@ var dropDownIndexes = ["sin","cos","tan"];
 		onDropDownClicked:function()
 		{
 			//console.log("onDropDownClicked");
+			
 		},
 		onCorrectAnsSelected:function()
 		{
@@ -53,7 +57,11 @@ var dropDownIndexes = ["sin","cos","tan"];
 		},
 		onWrongAnsSelected:function()
 		{
-			//console.log("Wrong Ans Selected");
+			cnt++;
+			console.log("Wrong Ans Selected"+cnt);
+			if(cnt==3){
+				stageMain.show_btn.dispatchEvent("mousedown");
+			}	
 		}			
 	});
 }

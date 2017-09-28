@@ -531,7 +531,7 @@ createjs.MovieClip.prototype.DropDown = function(options)
 
 	function onStageClick(evt){
 		//console.log("onStageClick:rollOverflg "+rollOverflg +" arrowOver "+arrowOver);
-		console.log("onStageClick:target.name "+evt.target.name);
+		//console.log("onStageClick:target.name "+evt.target.name);
 		if(evt.target.name!="scrollBg" && evt.target.name!="thumb"){
 			flag = true;
 			itemVisibility(false);	
@@ -540,7 +540,7 @@ createjs.MovieClip.prototype.DropDown = function(options)
 	}
 
 	function hdlrArrowClicked(evt){
-		console.log("hdlrArrowClicked "+flag +" dropDownIndex "+dropDownIndex);
+		//console.log("hdlrArrowClicked "+flag +" dropDownIndex "+dropDownIndex);
 		if (flag)
 		{
 			flag = false;
@@ -615,10 +615,10 @@ createjs.MovieClip.prototype.DropDown = function(options)
 		itemVisibility(false);
 		dropDownIndex = ansIndexNo;
 		select_mc._txt.text = itemArray[ansIndexNo];
-		//console.log("showAnsInDD:ans "+dropDownIndexes[ansIndexNo])
-		hideSelection();
-		var mc = self.items.getChildByName("item"+ansIndexNo);
-		mc.getChildByName("selectionMC").visible = true;
+		//console.log("showAnsInDD:ans "+itemArray[ansIndexNo],ansIndexNo)
+		//hideSelection();
+		//var mc = items.getChildByName("item"+ansIndexNo);
+		//mc.getChildByName("selectionMC").visible = true;
 	}
 
 	function resetDropDown(){

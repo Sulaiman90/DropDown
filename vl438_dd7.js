@@ -25,6 +25,18 @@ function getMCSymbolPrototype(symbol, nominalBounds, frameBounds) {
 	}
 
 
+(lib.Symbol1 = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// Layer 1
+	this.shape = new cjs.Shape();
+	this.shape.graphics.f("rgba(0,0,0,0.608)").s().p("AmtDhIAAnBINbAAIAAHBg");
+
+	this.timeline.addTween(cjs.Tween.get(this.shape).wait(1));
+
+}).prototype = getMCSymbolPrototype(lib.Symbol1, rect = new cjs.Rectangle(-43,-22.5,86.1,45.1), [rect]);
+
+
 (lib.yellowarrow_up = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
@@ -153,11 +165,15 @@ p.frameBounds = [rect, rect, rect, rect];
 	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(1));
 
 	// Layer 1
-	this.combo1 = new lib.dropdown1_mc();
-	this.combo1.parent = this;
-	this.combo1.setTransform(316.9,182.2,1,1,0,0,0,0.1,0.1);
+	this.show_btn = new lib.Symbol1();
+	this.show_btn.parent = this;
+	this.show_btn.setTransform(639.2,246.6);
 
-	this.timeline.addTween(cjs.Tween.get(this.combo1).wait(1));
+	this.combo = new lib.dropdown1_mc();
+	this.combo.parent = this;
+	this.combo.setTransform(316.9,182.2,1,1,0,0,0,0.1,0.1);
+
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.combo},{t:this.show_btn}]}).wait(1));
 
 	// script
 	this.shape = new cjs.Shape();
