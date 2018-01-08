@@ -25,6 +25,48 @@ function getMCSymbolPrototype(symbol, nominalBounds, frameBounds) {
 	}
 
 
+(lib.Symbol2 = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// Layer 2
+	this.shape = new cjs.Shape();
+	this.shape.graphics.f().s("#000000").ss(1,1,1).p("AlTibIKnAAIAAE3IqnAAg");
+	this.shape.setTransform(6.4,2.4);
+
+	this.shape_1 = new cjs.Shape();
+	this.shape_1.graphics.f("rgba(0,0,0,0.008)").s().p("AlTCbIAAk1IKnAAIAAE1g");
+	this.shape_1.setTransform(6.4,2.4);
+
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.shape_1},{t:this.shape}]}).wait(4));
+
+	// Layer 1
+	this.shape_2 = new cjs.Shape();
+	this.shape_2.graphics.f("#000000").s().p("AgiAoQgNgOAAgZQAAgZAOgPQANgOAVAAQAUAAANAOQAOAOAAAZIAAAEIhNAAQABARAJAKQAJAJAMAAQAJAAAHgFQAHgGAEgLIASADQgEAQgMAIQgLAJgTAAQgVAAgOgOgAgTgfQgIAIgBAOIA5AAQgBgNgGgHQgIgKgNAAQgLAAgJAIg");
+	this.shape_2.setTransform(19.9,1.8);
+
+	this.shape_3 = new cjs.Shape();
+	this.shape_3.graphics.f("#000000").s().p("AgdAuQgKgJgDgQIARgDQACALAGAFQAHAGALAAQAMAAAGgFQAGgFAAgHQAAgGgFgDQgEgDgOgDQgTgFgHgDQgHgDgEgGQgEgHAAgHQAAgHADgGQADgGAGgEQAEgDAHgCQAHgCAIAAQALAAAKADQAJAEAEAGQAEAGACAKIgRACQgBgIgGgEQgFgFgKAAQgMAAgFAEQgFAEAAAGQAAADACADQACADAFABIAOAFQATAFAHADQAIACAEAGQAEAGAAAJQAAAJgFAIQgFAIgKAEQgKAEgMAAQgTAAgLgIg");
+	this.shape_3.setTransform(9.3,1.8);
+
+	this.shape_4 = new cjs.Shape();
+	this.shape_4.graphics.f("#000000").s().p("AgiAoQgOgOAAgaQAAgcAQgOQAOgLASAAQAVAAAOAOQAOAOAAAYQAAATgGAMQgGALgMAHQgLAGgOAAQgVAAgNgOgAgVgdQgJAKAAATQAAAUAJAKQAJAKAMAAQANAAAJgKQAIgKAAgUQAAgTgIgKQgJgKgNAAQgMAAgJAKg");
+	this.shape_4.setTransform(-1.2,1.8);
+
+	this.shape_5 = new cjs.Shape();
+	this.shape_5.graphics.f("#000000").s().p("AgIBHIAAiOIARAAIAACOg");
+	this.shape_5.setTransform(-9,-0.2);
+
+	this.shape_6 = new cjs.Shape();
+	this.shape_6.graphics.f("#000000").s().p("AghBAQgOgJgIgSQgHgRAAgUQAAgWAIgRQAJgRAQgJQAPgIASAAQAWAAAOALQAPALAGAUIgTAEQgFgPgJgIQgKgHgOAAQgQAAgLAIQgLAIgEANQgFANAAAOQAAASAGAOQAFAOALAGQALAHAMAAQAQgBALgIQALgKAEgRIATAEQgGAXgPAMQgQANgWAAQgWAAgPgKg");
+	this.shape_6.setTransform(-18.3,-0.2);
+
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.shape_6},{t:this.shape_5},{t:this.shape_4},{t:this.shape_3},{t:this.shape_2}]}).wait(4));
+
+}).prototype = p = new cjs.MovieClip();
+p.nominalBounds = rect = new cjs.Rectangle(-28.6,-14.1,70,33.1);
+p.frameBounds = [rect, rect, rect, rect];
+
+
 (lib.Symbol1 = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
@@ -165,6 +207,11 @@ p.frameBounds = [rect, rect, rect, rect];
 	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(1));
 
 	// Layer 1
+	this.close_btn = new lib.Symbol2();
+	this.close_btn.parent = this;
+	this.close_btn.setTransform(517.7,108.1);
+	new cjs.ButtonHelper(this.close_btn, 0, 1, 2, false, new lib.Symbol2(), 3);
+
 	this.show_btn = new lib.Symbol1();
 	this.show_btn.parent = this;
 	this.show_btn.setTransform(639.2,246.6);
@@ -173,7 +220,7 @@ p.frameBounds = [rect, rect, rect, rect];
 	this.combo.parent = this;
 	this.combo.setTransform(316.9,182.2,1,1,0,0,0,0.1,0.1);
 
-	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.combo},{t:this.show_btn}]}).wait(1));
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.combo},{t:this.show_btn},{t:this.close_btn}]}).wait(1));
 
 	// script
 	this.shape = new cjs.Shape();

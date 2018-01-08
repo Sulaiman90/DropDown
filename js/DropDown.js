@@ -38,6 +38,8 @@ createjs.MovieClip.prototype.DropDown = function(options)
       scrollBarFillColor:"#A9A9A9",
       customHitBool:false,
       customHitShape:dummyHit,
+      totalIndexesToShow:3,
+      paddingBottomTop:0,
 	  onIndexSelected:function(data)
 	  {
 
@@ -114,11 +116,12 @@ createjs.MovieClip.prototype.DropDown = function(options)
 
 	/// added for scrolling
 	var showScroll = _parent.opts.showScroll;
-	var totalIndexesToShow = 5;
+	var totalIndexesToShow = _parent.opts.totalIndexesToShow;
 	var scrollHeight = 0;
 	var thumbHeight = 20;
 	var thumbWidth = 20;
 	var totalIndexHeight = 0;
+	var indexStartY = 18.2;
 
 	var thumbFillColor = _parent.opts.thumbFillColor;
 	var scrollBarFillColor = _parent.opts.scrollBarFillColor;
@@ -164,7 +167,6 @@ createjs.MovieClip.prototype.DropDown = function(options)
 	init();
 
 	function init(){
-
 		var space = 9;
 		if (navigator.userAgent.indexOf("Firefox") > 0) {
 			select_mc._txt.y = select_mc._txt.y + 2;	
@@ -178,8 +180,10 @@ createjs.MovieClip.prototype.DropDown = function(options)
 		}
 
 		select_mc._txt.textAlign = textAlignValue;
+		itemHeight = itemHeight + (_parent.opts.paddingBottomTop * 2);
 
 		self.addChild(bg);
+		self.addChild(customHitMc);
 		self.addChild(items);
 
 		currentIndexWidth = getMaxTxtWidth();
@@ -189,6 +193,11 @@ createjs.MovieClip.prototype.DropDown = function(options)
 		}
 
 		select_mc._txt.lineWidth = currentIndexWidth;
+
+		var rectBgX;
+		var rectBgY; 
+		var rectBgWidth; 
+		var rectBgHeight = 0;
 
 		var hitShape = new createjs.Shape();
 		hitShape.graphics.beginFill("black");
@@ -203,7 +212,7 @@ createjs.MovieClip.prototype.DropDown = function(options)
 		hitMc.addEventListener("mouseover", hdlrMouseOver2);
 		hitMc.addEventListener("mouseout", hdlrMouseOut2);
 
-		//console.log("customHitBool "+customHitBool);
+		//console.log("customHitBool "+customHitBool + " itemHeight "+itemHeight);
 		var customHitMc = _parent.opts.customHitShape;
 		if(customHitBool){		
 			customHitMc.alpha = 0.01;
@@ -222,10 +231,10 @@ createjs.MovieClip.prototype.DropDown = function(options)
 		xpos = hitMc.x;
 
 		if (isListComingTo == "down"){
-			ypos = hitMc.y + itemHeight + space;			
+			ypos = hitMc.y + indexStartY + space;			
 		}
 		else if (isListComingTo == "up"){
-			ypos = hitMc.y - itemHeight - 2;
+			ypos = hitMc.y - indexStartY - 2;
 			itemArray.reverse();
 			itemArray.pop();
 			itemArray.unshift("");
@@ -239,7 +248,6 @@ createjs.MovieClip.prototype.DropDown = function(options)
 		}
 
 		for (var i=1; i<=numItems; i++){
-
 			item  = new createjs.MovieClip(null);
 			item.name = "item" + i;
 			if (isListComingTo == "down"){
@@ -253,12 +261,14 @@ createjs.MovieClip.prototype.DropDown = function(options)
 			_txt.textAlign = textAlignValue;	
 		 	_txt.text = " "+itemArray[i];
 			_txt.lineWidth = currentIndexWidth;	
-			_txt.y = _txt.y + 1;
+			_txt.regY = _txt.getMeasuredHeight() / 2;
+			_txt.y = itemHeight/2 + _txt.y;
 
 			var overMC = new createjs.MovieClip(null);
 			overMC.name="overMC";
 
 			//console.log("currentIndexWidth "+currentIndexWidth);
+			//console.log("_txt "+_txt.height);
 
 			var indexShape = new createjs.Shape();
 			indexShape.graphics.beginFill(indexHoverColor);
@@ -285,10 +295,13 @@ createjs.MovieClip.prototype.DropDown = function(options)
 
 			item.visible = false;
 
-			//console.log("_txt:y "+i,_txt.y);
+			//console.log("ypos "+i,ypos);
+	
 			item.x = xpos+3.10;
 			item.y = ypos;
-		
+
+			//console.log("item:y "+i,item.y);
+
 			if (isListComingTo == "down"){		
 				ypos = ypos + itemHeight + spacing;
 			}
@@ -305,12 +318,8 @@ createjs.MovieClip.prototype.DropDown = function(options)
 		totalIndexHeight = Math.abs(items.getChildByName("item"+numItems).y);
 		totalIndexHeight = totalIndexHeight + 2;
 
-		var rectBgX;
-		var rectBgY; 
-		var rectBgWidth; 
-		var rectBgHeight;
+		//console.log("items.y "+items.y);
 
-		//console.log("showScroll "+showScroll);
 		if(showScroll){
 			rectBgHeight = Math.abs(items.getChildByName("item"+totalIndexesToShow).y); 
 		}
@@ -322,20 +331,27 @@ createjs.MovieClip.prototype.DropDown = function(options)
 		rectBgWidth = currentDropDownWidth-2;
 
 		if (isListComingTo == "down"){
-			ypos = hitMc.y + itemHeight;			
-			rectBgHeight = rectBgHeight+2;
+			ypos = hitMc.y + indexStartY;	
+			rectBgHeight = rectBgHeight + (itemHeight - indexStartY) + 2;		
 			rectBgY = ypos;
 			scrollHeight = rectBgHeight - 8;
+
 		}
 		else if (isListComingTo == "up"){
-			ypos = hitMc.y;			
-			rectBgHeight = rectBgHeight+2;
+			ypos = hitMc.y;
+			//rectBgHeight = rectBgHeight + 2;	
+			rectBgHeight = rectBgHeight + (itemHeight - indexStartY) + 2;				
 			rectBgY = ypos-rectBgHeight;
 			scrollHeight = rectBgHeight;
+			if(!showScroll){
+				items.y = -1 * (_parent.opts.paddingBottomTop * 2);
+			}
 		}
 
-		/*console.log("itemHeight "+itemHeight +" rectBgHeight "+rectBgHeight + " scrollHeight "+scrollHeight);
-		console.log("totalIndexHeight "+totalIndexHeight);*/
+		/*console.log("itemHeight "+itemHeight +" rectBgHeight "+rectBgHeight + " scrollHeight "+scrollHeight);*/
+		//console.log("totalIndexHeight "+totalIndexHeight);
+		/*console.log("rectBgHeight "+rectBgHeight);
+		console.log("rectBgY "+rectBgY);*/
 
 		// total indexes outline
 		rect.graphics.setStrokeStyle(1).beginStroke("#000000");
@@ -348,7 +364,9 @@ createjs.MovieClip.prototype.DropDown = function(options)
 		}
 		bg.addChild(rect);
 		rect.visible = false;
-	
+
+		//select_mc.visible = false;
+
 		// dropdown select shape	
 		var outline = new createjs.Shape();
 		outline.graphics.setStrokeStyle(2.2).beginStroke("#333333");
@@ -368,11 +386,6 @@ createjs.MovieClip.prototype.DropDown = function(options)
 		dummy2.graphics.moveTo(currentDropDownWidth,0+3);
 		dummy2.graphics.lineTo(currentDropDownWidth,dropDownHeight-5);
 		self.addChild(dummy2);
-
-		self.addChild(outline);
-		self.addChild(select_mc);	
-		self.addChild(arrow);	
-		self.addChild(hitMc);
 
 		arrow.x = currentDropDownWidth - 17.4;
 
@@ -399,8 +412,8 @@ createjs.MovieClip.prototype.DropDown = function(options)
 				scrollHeight = scrollHeight - 1; 
 			}
 
-			/*console.log("scrollHeight,scrollStartY "+scrollHeight,scrollStartY);
-			console.log("items Y "+items.y);		*/
+			/*console.log("scrollHeight,scrollStartY "+scrollHeight,scrollStartY);*/
+			//console.log("items Y "+items.y);		
 
 			// extrashape to hide small gap
 			var extraShape = new createjs.Shape();
@@ -425,26 +438,26 @@ createjs.MovieClip.prototype.DropDown = function(options)
 			scrollContainer.addChild(thumb);
 			thumb.name="thumb";
 
-			var contentHeight = totalIndexHeight;
+			var contentHeight = totalIndexHeight + (_parent.opts.paddingBottomTop * 2);
 			var scrollFaceHeight = thumbHeight;
 			var maskHeight = rectBgHeight;
 			var initPosition = thumb.y=scrollBg.y;
 			var initContentPos = items.y;
-			var finalContentPos = maskHeight-contentHeight+initContentPos;
 					
 			var dy = 0;
-			var speed = 10;
+			//var speed = 10;
 			var moveVal = (contentHeight-maskHeight)/(scrollHeight-scrollFaceHeight);
+		
+			//console.log("contentHeight "+contentHeight,maskHeight,scrollHeight,scrollFaceHeight);
+			//console.log("initContentPos "+initContentPos,moveVal);
 
-			thumb.on("mousedown", function(evt) 
-			{
+			thumb.on("mousedown", function(evt) {
 				var rS = heymathLessons.ratioScale;
 				this.offset = {x:this.x*rS - evt.stageX, y:this.y*rS - evt.stageY};
 				//console.log("mousedown");
 			});
 
-			thumb.on("pressmove", function(evt) 
-			{
+			thumb.on("pressmove", function(evt) {
 				var rS = heymathLessons.ratioScale;
 				var xPos = (evt.stageX + this.offset.x)/rS;
 				var yPos = (evt.stageY + this.offset.y)/rS;
@@ -469,6 +482,7 @@ createjs.MovieClip.prototype.DropDown = function(options)
 
 				items.y = Math.round(dy*-1*moveVal+initContentPos);
 			
+				//console.log("pressmove:dy "+dy,maxScroll);
 				//console.log("pressmove:yPos "+yPos,thumb.y,items.y);
 				//console.log("pressmove "+totalIndexHeight,scrollHeight);
 			});

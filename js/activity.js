@@ -14,12 +14,11 @@ function createDropDown(){
 
 	
 */
-	/*var dropDownIndexes=["Home","Home","Police Station","Fire Station",
+	var dropDownIndexes=["Home","Home","Police Station","Fire Station",
 					"Pharmacy","City Hospital","Car Park","Cinema",
-					"Children Park","Creche","College","Secondary School",
-					"Super Market","Water Pumping","Primary School","Transformer"];			*/		 
+					"Children Park","Creche","College"];					 
 
-var dropDownIndexes = ["Home","Police","Transformer"]; 
+//var dropDownIndexes = ["Home","Police","Transformer"]; 
 
 var cnt = 0;
 						 			   					   
@@ -37,7 +36,9 @@ var cnt = 0;
 		showScroll:false,
 		customHitBool:true,
 		customHitShape:stageMain.combo.customHitMc,
-		showAnsBtn:stageMain.show_btn,
+		//showAnsBtn:stageMain.show_btn,
+		closeBtn:stageMain.close_btn,
+		paddingBottomTop:5,
 		onIndexSelected:function(data)
 		{		
 			//console.log("onIndexSelected "+data);
@@ -64,5 +65,13 @@ var cnt = 0;
 			}	
 		}			
 	});
+
+
+	stageMain.show_btn.addEventListener("mousedown",closeDropDown);
+
+	function closeDropDown(e){
+		stageMain.close_btn.dispatchEvent("mousedown");
+	}
+	
 }
 
