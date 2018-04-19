@@ -11,16 +11,12 @@ function createDropDown(){
 	/*var dropDownIndexes = ["Elephant","Bungalow","India Map","Shelf","Four",
 						   "Castle","Cup","Cup and saucer","Van","Car"
 						   ];	
-
 	
 */
-	var dropDownIndexes=["Home","Home","Police Station","Fire Station",
-					"Pharmacy","City Hospital","Car Park","Cinema",
-					"Children Park","Creche","College"];					 
+	var dropDownIndexes=["Home","Police Station","Fire Station",
+					"Pharmacy","City Hospital","Car Park"];					 
 
-//var dropDownIndexes = ["Home","Police","Transformer"]; 
-
-var cnt = 0;
+	var cnt = 0;
 						 			   					   
 	//dropDownIndexes.sort(Array.CASEINSENSITIVE);
 
@@ -28,7 +24,7 @@ var cnt = 0;
 
 	stageMain.combo.DropDown({
 		indexes:dropDownIndexes,
-		answer:1,
+		answer:4,
 		indexHoverColor:"#66CCFF",
       	indexHoverAlpha:0.7,
       	indexDirection:"down",
@@ -36,9 +32,10 @@ var cnt = 0;
 		showScroll:false,
 		customHitBool:true,
 		customHitShape:stageMain.combo.customHitMc,
-		//showAnsBtn:stageMain.show_btn,
+		showAnsBtn:stageMain.show_btn,
 		closeBtn:stageMain.close_btn,
-		paddingBottomTop:5,
+		paddingBottomTop:10,
+		resetBtn:stageMain.resetBtn,
 		onIndexSelected:function(data)
 		{		
 			//console.log("onIndexSelected "+data);
@@ -72,6 +69,8 @@ var cnt = 0;
 	function closeDropDown(e){
 		stageMain.close_btn.dispatchEvent("mousedown");
 	}
+
+	stageMain.resetBtn.dispatchEvent("mousedown");
 	
 }
 
