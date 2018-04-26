@@ -606,11 +606,9 @@ createjs.MovieClip.prototype.DropDown = function (options) {
 	}
 
 	function hideSelection() {
-		window.setTimeout(function () {
-			for (var i = 1; i <= items.numChildren; i++) {
-				items.getChildByName("item" + i).getChildByName("selectionMC").visible = false;
-			}
-		}, 500);
+		for (var i = 1; i <= items.numChildren; i++) {
+			items.getChildByName("item" + i).getChildByName("selectionMC").visible = false;
+		}
 	}
 
 	function itemVisibility(val) {
