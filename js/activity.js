@@ -20,7 +20,7 @@ function createDropDown(){
 						 			   					   
 	//dropDownIndexes.sort(Array.CASEINSENSITIVE);
 
-	console.log("createDropDown:dropDownIndexes "+dropDownIndexes);
+	console.log("createDropDown:dropDownIndexes "+dropDownIndexes,dropDownIndexes.length);
 
 	stageMain.combo.DropDown({
 		indexes:dropDownIndexes,
@@ -35,14 +35,13 @@ function createDropDown(){
 		showAnsBtn:stageMain.show_btn,
 		closeBtn:stageMain.close_btn,
 		paddingBottomTop:10,
-		resetBtn:stageMain.resetBtn,
 		onIndexSelected:function(data)
 		{		
-			//console.log("onIndexSelected "+data);
+			console.log("onIndexSelected "+data);
 		},
 		onIndexChanged:function(indexNo)
 		{
-			//console.log("onIndexChanged "+indexNo);
+			console.log("onIndexChanged "+indexNo);
 		},
 		onDropDownClicked:function()
 		{
@@ -64,13 +63,13 @@ function createDropDown(){
 	});
 
 
+	console.log("createDropDown:dropDownIndexes "+dropDownIndexes,dropDownIndexes.length);
+
 	stageMain.show_btn.addEventListener("mousedown",closeDropDown);
 
 	function closeDropDown(e){
 		stageMain.close_btn.dispatchEvent("mousedown");
 	}
-
-	stageMain.resetBtn.dispatchEvent("mousedown");
 	
 }
 
