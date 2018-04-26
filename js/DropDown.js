@@ -65,11 +65,10 @@ createjs.MovieClip.prototype.DropDown = function (options) {
 
 	_parent.opts = extend({}, this.defaults, options);
 
-	var itemArray = _parent.opts.indexes.slice(0);
-	//var itemArray = _parent.opts.indexes;
+	//var itemArray = _parent.opts.indexes.slice(0);
+	var itemArray = _parent.opts.indexes;
 	//console.log("indexes " + _parent.opts.indexes, itemArray, itemArray.length);
 	itemArray.unshift("");
-	//console.log("indexes " + _parent.opts.indexes, itemArray, itemArray.length);
 
 	var ansIndexNo = _parent.opts.answer + 0;
 	var indexHoverColor = _parent.opts.indexHoverColor;
@@ -635,7 +634,7 @@ createjs.MovieClip.prototype.DropDown = function (options) {
 	}
 
 	function resetDropDown() {
-		trace("resetDropDown");
+		//trace("resetDropDown");
 		dropDownIndex = 0;
 		currentIndexNo = dropDownIndex;
 		flag = true;
