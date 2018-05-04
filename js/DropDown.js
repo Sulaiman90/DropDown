@@ -165,7 +165,8 @@ createjs.MovieClip.prototype.DropDown = function (options) {
 	function init() {
 		var space = 9;
 		if (navigator.userAgent.indexOf("Firefox") > 0) {
-			select_mc._txt.y = select_mc._txt.y + 2;
+			//select_mc._txt.y = select_mc._txt.y + 2;
+			select_mc._txt.y = 5.6;
 		}
 
 		if (isListComingTo == "up") {
