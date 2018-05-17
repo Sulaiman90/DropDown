@@ -1,16 +1,16 @@
 createjs.MovieClip.prototype.DropDown = function (options) {
 	var _parent = this;
 
-	var dummyShowAnswer = new createjs.MovieClip(null)
+	var dummyShowAnswer = new createjs.MovieClip(null);
 	_parent.addChild(dummyShowAnswer);
 
-	var dummyReset = new createjs.MovieClip(null)
+	var dummyReset = new createjs.MovieClip(null);
 	_parent.addChild(dummyReset);
 
-	var dummyClose = new createjs.MovieClip(null)
+	var dummyClose = new createjs.MovieClip(null);
 	_parent.addChild(dummyClose);
 
-	var dummyHit = new createjs.MovieClip(null)
+	var dummyHit = new createjs.MovieClip(null);
 	_parent.addChild(dummyHit);
 
 	extend = function () {
@@ -456,13 +456,22 @@ createjs.MovieClip.prototype.DropDown = function (options) {
 			thumb.on("mousedown", function (evt) {
 				var rS = heymathLessons.ratioScale;
 				this.offset = { x: this.x * rS - evt.stageX, y: this.y * rS - evt.stageY };
+
+				thumb.addEventListener("pressmove", thumbMove);
+				thumb.addEventListener("pressup", thumbUp);
+
+				parent.window.addEventListener("mouseup", function (evt) {
+					if (thumb) {
+						thumb.dispatchEvent("pressup");
+					}
+				});
 				//console.log("mousedown");
 			});
 
-			thumb.on("pressmove", function (evt) {
+			function thumbMove(evt){
 				var rS = heymathLessons.ratioScale;
-				var xPos = (evt.stageX + this.offset.x) / rS;
-				var yPos = (evt.stageY + this.offset.y) / rS;
+				var xPos = (evt.stageX + thumb.offset.x) / rS;
+				var yPos = (evt.stageY + thumb.offset.y) / rS;
 
 				var maxScroll = scrollHeight - thumbHeight;
 				var minScroll = 0;
@@ -487,7 +496,15 @@ createjs.MovieClip.prototype.DropDown = function (options) {
 				//console.log("pressmove:dy "+dy,maxScroll);
 				//console.log("pressmove:yPos "+yPos,thumb.y,items.y);
 				//console.log("pressmove "+totalIndexHeight,scrollHeight);
-			});
+			}
+
+			// mouse up on thumb or window
+			function thumbUp(e){
+				console.log("thumbUp");
+				thumb.removeEventListener("pressmove", thumbMove);
+				thumb.removeEventListener("pressup", thumbUp);
+			}
+
 		}
 		self.addChild(outline);
 		self.addChild(select_mc);

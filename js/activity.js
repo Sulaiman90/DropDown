@@ -29,7 +29,7 @@ function createDropDown(){
       	indexHoverAlpha:0.7,
       	indexDirection:"down",
 		defaultIndex:"Select",
-		showScroll:false,
+		showScroll:true,
 		customHitBool:true,
 		customHitShape:stageMain.combo.customHitMc,
 		showAnsBtn:stageMain.show_btn,
